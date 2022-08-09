@@ -15,14 +15,18 @@ namespace Business.Concrete
     public class ReservationManager : IReservationService
     {
         IReservationDal _reservationDal;
+        IVagonDal _vagonDal;
 
-        public ReservationManager(IReservationDal reservationDal)
+        public ReservationManager(IReservationDal reservationDal, IVagonDal vagonDal)
         {
             _reservationDal = reservationDal;
+            _vagonDal = vagonDal;
         }
 
         public IResult Add(ReservationAddDto reservationAddDto)
         {
+            
+
             Reservation reservation = new Reservation()
             {
                 TrainId = reservationAddDto.TrainId,
@@ -31,18 +35,23 @@ namespace Business.Concrete
                 PersonsCanBePlacedOnDifferentWagons = reservationAddDto.PersonsCanBePlacedOnDifferentWagons,
             };
 
-            //var result1 = _reservationDal.GetAll();
-            // var result2 = result1.Vagons.Select(x => x.Seat).Count();
-            //var result3 = result1.Select(x => x.Vagons.Select(x => x.Seat).ToList().Count());
 
-            //if (result3<5) 
-            //{
-            //    return new ErrorResult(Messages.NotRezervation);
-            //}
+            var result1 = _reservationDal.GetAll();
+            var result11 = _vagonDal.GetAll();
+            var result5 = result11.Select(x => x.Seat).ToList().Count();
+            var result2 = result1.Select(x => x.NumberOfPersonsToReservation).ToList().Count();
+            var resultEnd = result5.Equals(result2);
 
+
+            if (result2 == result5)
+            {
+                return new ErrorResult(Messages.NotRezervation);
+            }
+            
             _reservationDal.Add(reservation);
-
             return new SuccessResult(Messages.ReservationAdded);
+
+
         }
 
 
