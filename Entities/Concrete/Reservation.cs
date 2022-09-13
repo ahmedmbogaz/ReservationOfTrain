@@ -15,7 +15,5 @@ namespace Entities.Concrete
         public int? NumberOfPersonsToReservation { get; set; }
         public bool PersonsCanBePlacedOnDifferentWagons { get; set; }
 
-        public ICollection<Vagon> Vagons { get; set; }
-        public ICollection<Train> Trains { get; set; }
     }
 }

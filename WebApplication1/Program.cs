@@ -1,20 +1,11 @@
-using Autofac;
-using Autofac.Extensions.DependencyInjection;
-using Business.DependencyResolvers.Autofac;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-var builderr = WebApplication.CreateBuilder(args);
-builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory()).ConfigureContainer<ContainerBuilder>(p =>
-    p.RegisterModule(new AutofacBusinessModule())
-    );
 
 var app = builder.Build();
 

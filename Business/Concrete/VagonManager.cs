@@ -19,13 +19,19 @@ namespace Business.Concrete
             _vagonDal = vagonDal;
         }
 
+        public IResult Add(Vagon vagon)
+        {
+            _vagonDal.Add(vagon);
+            return new SuccessResult(Messages.VagonAdded);
+        }
+
         public IDataResult<List<Vagon>> GetAll()
         {
             if (DateTime.Now.Hour == 3)
             {
-                return new ErrorDataResult<List<Vagon>>(Messages.ReservationListed);
+                return new ErrorDataResult<List<Vagon>>(Messages.NotTrainListed);
             }
-            return new SuccessDataResult<List<Vagon>>(_vagonDal.GetAll(), Messages.NotReservationListed);
+            return new SuccessDataResult<List<Vagon>>(_vagonDal.GetAll(), Messages.VagonListed);
         }
     }
 }

@@ -21,13 +21,19 @@ namespace Business.Concrete
             _trainDal = trainDal;
         }
 
+        public IResult Add(Train train)
+        {
+            _trainDal.Add(train);
+            return new SuccessResult(Messages.TrainAdded);
+        }
+
         public IDataResult<List<Train>> GetAll()
         {
             if (DateTime.Now.Hour == 3)
             {
-                return new ErrorDataResult<List<Train>>(Messages.ReservationListed);
+                return new ErrorDataResult<List<Train>>(Messages.NotTrainListed);
             }
-            return new SuccessDataResult<List<Train>>(_trainDal.GetAll(), Messages.NotReservationListed);
+            return new SuccessDataResult<List<Train>>(_trainDal.GetAll(), Messages.TrainListed);
         }
     }
 }

@@ -15,5 +15,7 @@ namespace Business.Constants
         public static string ReservationListed = "Reservasyon Listelendi";
         public static string NotReservationListed = "Reservasyon Listelenemedi";
         public static string NotRezervation = "Rezervasyon Yapılamadı !";
+        public static string VagonAdded = "Vagon Eklenedi";
+        public static string VagonListed = "Vagon Listelendi";
     }
 }

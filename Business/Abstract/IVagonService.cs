@@ -11,5 +11,6 @@ namespace Business.Abstract
     public interface IVagonService
     {
         IDataResult<List<Vagon>> GetAll();
+        IResult Add(Vagon vagon);
     }
 }

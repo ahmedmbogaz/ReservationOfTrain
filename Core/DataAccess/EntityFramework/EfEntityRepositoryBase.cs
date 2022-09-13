@@ -15,7 +15,7 @@ namespace Core.DataAccess.EntityFramework
     {
         public void Add(TEntity entity)
         {
-            using (TContext context = new TContext())//using carbac kollektıra temizle der
+            using (TContext context = new TContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -46,14 +46,13 @@ namespace Core.DataAccess.EntityFramework
         {
             using (TContext context = new TContext())
             {
-                //product a yerleş ve orada ki tüm verileri liste çevir
                 return filter == null ? context.Set<TEntity>().ToList() : context.Set<TEntity>().Where(filter).ToList();
             }
         }
 
         public void Update(TEntity entity)
         {
-            using (TContext context = new TContext())//using carbac kollektıra temizle der
+            using (TContext context = new TContext())
             {
                 var updatedEntity = context.Entry(entity);
                 updatedEntity.State = EntityState.Modified;

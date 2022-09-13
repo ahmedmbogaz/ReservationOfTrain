@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,30 +7,30 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReservationsController : ControllerBase
+    public class TrainsController : ControllerBase
     {
-        IReservationService _reservationService;
+        ITrainService _trainService;
 
-        public ReservationsController(IReservationService reservationService)
+        public TrainsController(ITrainService trainService)
         {
-            _reservationService = reservationService;
+            _trainService = trainService;
         }
 
         [HttpPost("add")]
-        public IActionResult Add(Reservation reservation)
+        public IActionResult Add(Train train)
         {
-            var result = _reservationService.Add(reservation);
+            var result = _trainService.Add(train);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
         }
-        
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _reservationService.GetAll();
+            var result = _trainService.GetAll();
             if (result.Success)
             {
                 return Ok(result);

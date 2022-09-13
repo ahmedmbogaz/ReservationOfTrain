@@ -15,7 +15,5 @@ namespace Entities.Concrete
         public int Seat { get; set; }
         public int TrainId { get; set; }
 
-        public Train Train { get; set; }
-        public Reservation Reservations { get; set; }
     }
 }

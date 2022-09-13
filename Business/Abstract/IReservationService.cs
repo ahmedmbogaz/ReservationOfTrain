@@ -11,10 +11,7 @@ namespace Business.Abstract
 {
     public interface IReservationService
     {
-        //IResult AddDetail(ReservationDetailDto reservationDetailDto);
-        //IDataResult<List<ReservationDetailDto>> ReservationDetails();
-        IResult Add(ReservationAddDto reservationAddDto);
+        IResult Add(Reservation reservation);
         IDataResult<List<Reservation>> GetAll();
-        //IResult Add(Reservation reservation);
     }
 }
